@@ -23,7 +23,7 @@ class Form extends Component {
         this.setState({
             [name]: value
         });
-        this.props.onSubmit(this.state);
+        this.props.onAddContact(this.state);
         this.reset();
     }
 
