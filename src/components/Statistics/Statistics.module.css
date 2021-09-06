@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.good,
+.neutral,
+.bad,
+.total,
+.positiveFeedback {
+  margin-bottom: 5px;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(4, 92, 192);
+}
+
+.good {
+  color: green;
+}
+
+.neutral {
+  color: rgb(196, 160, 116);
+}
+
+.bad {
+  color: red;
+}
+
+.total {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.positiveFeedback {
+  font-style: italic;
+  font-size: 16px;
+}
