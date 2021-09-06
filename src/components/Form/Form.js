@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 
+
 class Form extends Component {
     state = {
         name: '',
-        number: ''
+        number: '',
+        id:''
     }
+
+    
 
     handleChange = e => {
         const { name, value } = e.currentTarget;
         this.setState({
-            [name]: value
+            [name]: value,
         });
     }
 
@@ -17,19 +21,29 @@ class Form extends Component {
         e.preventDefault();
         const { name, value } = e.currentTarget;
         this.setState({
-        [name]: value
+            [name]: value
         });
+        this.props.onSubmit(this.state);
+        this.reset();
+    }
+
+    
+
+    reset = () => {
+        this.setState({ name: '', number: '' });
     }
     render() {
         const { name, number } = this.state;
+        
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
                     Name
                     <input
-                    type="text"
-                    name="name"
-                    value={name}
+                        type="text"
+                        name="name"
+                        value={name}
+                        id={this.nameInputId}
                     onChange={this.handleChange}
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                     title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
