@@ -7,30 +7,29 @@ import ContactForm from './components/ContactForm';
 import Filter from './components/Filter';
 import ContactList from './components/ContactList';
 
-
 class App extends Component {
-
-  // static defaultProps = {
-  //   initialValue: 0,
-  // }
 
   state = {
     contacts: data,
     filter: ''
   }
 
-  addContact = ({name, number}) => {
+  addContact = ({ name, number }) => {
     const contact = {
       id: uuidv4(),
       name,
       number
     };
 
-    this.setState(({contacts}) => ({
-      contacts:[contact,...contacts],
-    }))
+    if (name === contact.name) {
+      alert(`${name} is already in contacts`);
+    } else {
+      this.setState(({ contacts }) => ({
+        contacts: [contact, ...contacts]
+      }))
+    }
   }
-
+  
   deleteContact = contactId => {
     this.setState(prevState => ({
       contacts:prevState.contacts.filter(contact => contact.id !==contactId),
@@ -41,17 +40,16 @@ class App extends Component {
     this.setState({ filter: e.currentTarget.value });
   }
 
-  // searchContact = contacts=> {
-  //   this.setState(prevState => ({
-  //     contacts:prevState.contacts.find(contact => contact.id ===contactId),
-  //   }))
-  // }
-    
-  render() {
+  getVisibleContacts = () => {
     const { contacts, filter } = this.state;
     const normilizedFilter = filter.toLowerCase();
-    const visibleContacts = contacts.filter(contact =>
+    return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normilizedFilter));
+  }
+  
+  render() {
+    const { filter } = this.state;
+    const visibleContacts = this.getVisibleContacts();
     return (
       <Container>
         <div>
