@@ -6,7 +6,7 @@ import ContactListItem from '../ContactListItem';
 const ContactList = ({ contacts, onDeleteContact }) => (
     <ul className={s.list}>
         {contacts.map((contacts)=> (
-            <li key={contacts.id} className={s.item} >
+            <li key={contacts.id}  >
                  <ContactListItem contacts={contacts} onDeleteContact={onDeleteContact} />
             </li>
         ))}

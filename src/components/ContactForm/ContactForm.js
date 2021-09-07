@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import s from './ContactForm.module.css';
 
-
-class Form extends Component {
+class ContactForm extends Component {
     state = {
         name: '',
         number: '',
@@ -30,41 +28,54 @@ class Form extends Component {
     reset = () => {
         this.setState({ name: '', number: '' });
     }
-    
+
     render() {
         const { name, number } = this.state;
         
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Name
+            <form onSubmit={this.handleSubmit} className={s.form}>
+                <label className={s.label}>
+                    <span className={s.title}>Name</span>
                     <input
+                        className={s.input}
                         type="text"
                         name="name"
                         value={name}
-                        id={this.nameInputId}
-                    onChange={this.handleChange}
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                    title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-                    required
+                        onChange={this.handleChange}
+                        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                        title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+                        required
                     />
                 </label>
-                <label>
-                    Number
+                <label className={s.label}>
+                    <span className={s.title}>Number</span>
                     <input
-                    type="tel"
-                    name="number"
-                    value={number}
-                    onChange={this.handleChange}
-                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                    title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-                    required
+                        className={s.input}
+                        type="tel"
+                        name="number"
+                        value={number}
+                        onChange={this.handleChange}
+                        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                        title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+                        required
                     />
                 </label>
-                <button type="submit">Add contact</button>
+                <button className={s.button} type="submit">Add contact</button>
             </form>
         )
     }
 }
 
-export default Form;
+// ContactForm.propTypes = {
+//     name: PropTypes.string.isRequired,
+//     number: PropTypes.string.isRequired,
+//     contacts: PropTypes.arrayOf(
+//         PropTypes.shape({
+//             id: PropTypes.string.isRequired,
+//         })
+//     ),
+//     onChange: PropTypes.func.isRequired,
+//     onSubmit:PropTypes.func.isRequired
+// };
+
+export default ContactForm;

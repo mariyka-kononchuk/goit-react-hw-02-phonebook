@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import data from './data/contacts.json'
+import s from './App.module.css';
+
 import Container from './components/Container';
-import Section from './components/Section';
 import ContactForm from './components/ContactForm';
 import Filter from './components/Filter';
 import ContactList from './components/ContactList';
@@ -15,19 +16,21 @@ class App extends Component {
   }
 
   addContact = ({ name, number }) => {
+    const { contacts } = this.state;
     const contact = {
       id: uuidv4(),
       name,
       number
     };
-
-    if (name === contact.name) {
+    
+    if (contacts.find(option => option.name.toLowerCase() === name.toLowerCase())) {
       alert(`${name} is already in contacts`);
-    } else {
-      this.setState(({ contacts }) => ({
-        contacts: [contact, ...contacts]
-      }))
+      return;
     }
+    
+    this.setState(({ contacts }) => ({
+      contacts: [contact, ...contacts]
+    }))
   }
   
   deleteContact = contactId => {
@@ -53,10 +56,9 @@ class App extends Component {
     return (
       <Container>
         <div>
-          <h1>Phonebook</h1>
+          <h1 className={s.titlePhonebbok}>Phonebook</h1>
           <ContactForm onAddContact={this.addContact} />
-
-          <h2>Contacts</h2>
+          <h2 className={s.titleContacts}>Contacts</h2>
           <Filter value={filter} onChange={this.changeFilter} />
           <ContactList contacts={visibleContacts} onDeleteContact={this.deleteContact} />
         </div>

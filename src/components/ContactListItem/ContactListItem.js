@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 import s from './ContactListItem.module.css';
 
 const ContactListItem = ({ contacts, onDeleteContact }) => (
-    <div>
-        <p>{contacts.name}:<span>{contacts.number}</span></p>
-        <button onClick={()=> onDeleteContact(contacts.id)}>Delete</button>
+    <div className={s.item}>
+        <p className={s.contact}>
+            <span className={s.name}>{contacts.name}:
+            </span>
+            <span className={s.number}>{contacts.number}
+            </span>
+        </p>
+        <button className={s.button} onClick={()=> onDeleteContact(contacts.id)}>Delete</button>
     </div> 
 )
 
