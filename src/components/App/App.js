@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import data from './data/contacts.json'
+import data from '../../data/contacts.json'
 import s from './App.module.css';
 
-import Container from './components/Container';
-import ContactForm from './components/ContactForm';
-import Filter from './components/Filter';
-import ContactList from './components/ContactList';
+import Container from '../Container';
+import ContactForm from '../ContactForm';
+import Filter from '../Filter';
+import ContactList from '../ContactList';
 
 class App extends Component {
 
